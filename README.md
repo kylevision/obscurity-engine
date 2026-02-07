@@ -77,4 +77,7 @@ Required only if you want to use "Rabbit Hole" modes that require user context.
 ---
 
 ## ⚠️ Disclaimer
+
 This tool is for educational and archival purposes only. Please respect the Terms of Service of all platforms and the copyright of content creators.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_USERNAME)
