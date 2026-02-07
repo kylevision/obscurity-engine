@@ -47,7 +47,7 @@ def _parse_duration(dur_str):
 logger = logging.getLogger(__name__)
 
 # ═══════════════════════════════════════════════════════════════════════
-#  FILENAME PATTERNS — cameras, phones, screen recorders, drones, OS
+#  FILENAME PATTERNS
 # ═══════════════════════════════════════════════════════════════════════
 FILENAME_PATTERNS = {
     "IMG_XXXX": "IMG_", "DSC_XXXX": "DSC_", "DSCN_XXXX": "DSCN_",
@@ -221,13 +221,13 @@ REGION_CODES = {
     "🇮🇳 India": "IN", "🇷🇺 Russia": "RU", "🇲🇽 Mexico": "MX",
     "🇮🇩 Indonesia": "ID", "🇹🇷 Turkey": "TR", "🇹🇭 Thailand": "TH",
     "🇻🇳 Vietnam": "VN", "🇵🇭 Philippines": "PH", "🇪🇬 Egypt": "EG",
-    "🇳🇬 Nigeria": "NG", "🇿🇦 S.Africa": "ZA", "🇦🇷 Argentina": "AR",
-    "🇨🇱 Chile": "CL", "🇨🇴 Colombia": "CO", "🇪🇸 Spain": "ES",
+    "🇳🇬 Nigeria": "NG", "🇿🇦 S.Africa": "ZA", "🇦🇪 UAE": "AE",
+    "🇦🇷 Argentina": "AR", "🇨🇱 Chile": "CL", "🇨🇴 Colombia": "CO", "🇪🇸 Spain": "ES",
     "🇮🇹 Italy": "IT", "🇵🇱 Poland": "PL", "🇳🇱 Netherlands": "NL",
     "🇸🇪 Sweden": "SE", "🇳🇴 Norway": "NO", "🇫🇮 Finland": "FI",
     "🇩🇰 Denmark": "DK", "🇨🇿 Czechia": "CZ", "🇬🇷 Greece": "GR",
     "🇵🇹 Portugal": "PT", "🇷🇴 Romania": "RO", "🇭🇺 Hungary": "HU",
-    "🇮🇱 Israel": "IL", "🇸🇦 Saudi Arabia": "SA", "🇦🇪 UAE": "AE",
+    "🇮🇱 Israel": "IL", "🇸🇦 Saudi Arabia": "SA",
     "🇵🇰 Pakistan": "PK", "🇧🇩 Bangladesh": "BD", "🇲🇾 Malaysia": "MY",
     "🇸🇬 Singapore": "SG", "🇹🇼 Taiwan": "TW", "🇭🇰 Hong Kong": "HK",
     "🇳🇿 New Zealand": "NZ", "🇵🇪 Peru": "PE", "🇺🇦 Ukraine": "UA",
@@ -305,15 +305,20 @@ def search_youtube(
     video_type: str = "any", topic_id: str = "",
 ) -> Dict[str, Any]:
     try:
+        # Use page_token if provided, and cap per-page request at 50
         params = {"part": "snippet", "q": query, "type": "video",
                   "maxResults": min(max_results, 50), "order": order, "safeSearch": safe_search}
+        
         if published_after: params["publishedAfter"] = published_after.strftime("%Y-%m-%dT%H:%M:%SZ")
         if published_before: params["publishedBefore"] = published_before.strftime("%Y-%m-%dT%H:%M:%SZ")
         if location:
             params["location"] = f"{location[0]},{location[1]}"
             params["locationRadius"] = location_radius
         if video_duration != "any": params["videoDuration"] = video_duration
+        
+        # KEY CHANGE: Support Deep Paging
         if page_token: params["pageToken"] = page_token
+            
         if region_code: params["regionCode"] = region_code
         if relevance_language: params["relevanceLanguage"] = relevance_language
         if video_category_id: params["videoCategoryId"] = video_category_id
@@ -325,6 +330,7 @@ def search_youtube(
         if video_syndicated != "any": params["videoSyndicated"] = video_syndicated
         if video_type != "any": params["videoType"] = video_type
         if topic_id: params["topicId"] = topic_id
+        
         response = service.search().list(**params).execute()
         return {"items": response.get("items", []), "nextPageToken": response.get("nextPageToken"),
                 "prevPageToken": response.get("prevPageToken"),
@@ -336,6 +342,7 @@ def search_youtube(
 
 def get_video_details(service, video_ids: List[str]) -> List[Dict[str, Any]]:
     all_details = []
+    # Batch details in groups of 50
     for i in range(0, len(video_ids), 50):
         batch = video_ids[i:i + 50]
         try:
@@ -522,7 +529,7 @@ def detect_default_filename(title: str) -> bool:
 
 
 # ═══════════════════════════════════════════════════════════════════════
-#  FILTERS — Every possible post-filter
+#  FILTERS
 # ═══════════════════════════════════════════════════════════════════════
 def filter_by_views(df, max_views=0):
     if df.empty: return df
