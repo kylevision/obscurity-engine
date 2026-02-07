@@ -18,9 +18,11 @@ from modules.analyzer import *
 from modules.brute_force import *
 from modules.export_tools import *
 from modules.media_analyzer import *
+
 st.set_page_config(page_title="O.E. v7",page_icon="⌬",layout="wide",initial_sidebar_state="expanded")
 css=Path(__file__).parent/"static"/"style.css"
 if css.exists():st.markdown(f"<style>{css.read_text()}</style>",unsafe_allow_html=True)
+
 st.markdown("""<style>
 .H{text-align:center;padding:0.5rem 0;border:1px solid #1a8c1a;background:#050505}
 .T{font-family:'VT323',monospace;font-size:2.2rem;color:#66ff66;text-shadow:0 0 20px rgba(51,255,51,0.3);letter-spacing:6px;margin:0}
@@ -38,13 +40,16 @@ st.markdown("""<style>
 .tb{border:1px solid #1a8c1a;background:#050505;padding:8px;margin:4px 0;font-family:'VT323',monospace;font-size:.85rem;color:#33ff33}
 .boot{font-family:'VT323',monospace;color:#33ff33;font-size:1rem;line-height:1.8;white-space:pre}
 </style>""",unsafe_allow_html=True)
+
 for k,v in {"yt_results":pd.DataFrame(),"ia_results":pd.DataFrame(),"search_count":0,"last_queries":[],
     "batch_selected":set(),"roulette_queue":[],"roulette_idx":0,"rabbit_hole_queries":[],"booted":False}.items():
     if k not in st.session_state:st.session_state[k]=v
+
 load_env();ensure_vault();ensure_data_dir()
 if st.session_state.yt_results.empty:
     c=load_last_results()
     if not c.empty:st.session_state.yt_results=c
+
 # Boot sequence
 if not st.session_state.booted:
     st.session_state.booted=True
@@ -69,9 +74,11 @@ SYSTEM READY. SELECT MODULE FROM SIDEBAR.
 > _</div>""",unsafe_allow_html=True)
     import time;time.sleep(1.5)
     boot_placeholder.empty()
+
 def _e(t):
     if not t:return ""
     return str(t).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+
 def render_sidebar():
     with st.sidebar:
         st.markdown('<div class="H"><div class="T">⌬ O.E. v7</div><div class="S">Final Form</div></div>',unsafe_allow_html=True)
@@ -86,6 +93,7 @@ def render_sidebar():
             "📺 ROULETTE","💀 BRUTE","⏳ CAPSULE","🔬 ANALYZE","🔊 MEDIA","🏆 BOARD","⭐ FAVS",
             "📊 STATS","📤 EXPORT","📦 VAULT","⚙️ SETUP"],label_visibility="collapsed")
         return page
+
 # ═══ CARDS + HELPERS ═══
 def render_yt_card(row,idx,prefix="sr",show_batch=True):
     views=int(row.get("views",0));vid=row.get("video_id","");title=row.get("title","?")
@@ -123,11 +131,14 @@ def render_yt_card(row,idx,prefix="sr",show_batch=True):
                 if st.button("☆",key=f"{prefix}_u_{vid}_{idx}"):remove_favorite(vid);st.rerun()
         with bc2:
             if not iv:
-                if st.button("DL",key=f"{prefix}_d_{vid}_{idx}"):_dl(vid,url,title,row)
+                # EDITED: Commented out to prevent downloading
+                # if st.button("DL",key=f"{prefix}_d_{vid}_{idx}"):_dl(vid,url,title,row)
+                st.caption("Disabled")
             else:st.caption("✓")
         if show_batch:
             if st.checkbox("SEL",key=f"{prefix}_s_{vid}_{idx}",value=vid in st.session_state.batch_selected):st.session_state.batch_selected.add(vid)
             elif vid in st.session_state.batch_selected:st.session_state.batch_selected.discard(vid)
+
 def _dl(vid,url,title,row):
     with st.spinner(f"DL {str(title)[:30]}..."):
         m=row.to_dict() if hasattr(row,"to_dict") else dict(row)
@@ -137,7 +148,9 @@ def _dl(vid,url,title,row):
         r=download_youtube_video(url=url,video_id=vid,title=str(title),quality="best",metadata=m)
         if r["success"]:st.success("OK");st.rerun()
         else:st.error(r["error"])
+
 def _xv(items):return[it.get("id",{}).get("videoId","") if isinstance(it.get("id"),dict) else str(it.get("id","")) for it in items]
+
 def _yt(svc,qs,mpq,pa,pb,so,da,rg,la,ca,ss,vd,et=""):
     ai=[];p=st.progress(0)
     for i,q in enumerate(qs):
@@ -153,6 +166,7 @@ def _yt(svc,qs,mpq,pa,pb,so,da,rg,la,ca,ss,vd,et=""):
         p.progress(.85,"DETAILS...");vs=[v for v in _xv(u) if v];det=get_video_details(svc,vs)
         df=parse_video_data(u,det);df=analyze_thumbnails(df);p.progress(1.0,f"{len(df)} FOUND");return df
     p.progress(1.0,"NONE");return pd.DataFrame()
+
 def _pf(df,mv,**kw):
     if df.empty:return df
     df=filter_by_views(df,mv)
@@ -178,6 +192,7 @@ def _pf(df,mv,**kw):
     if kw.get("dc"):df=filter_description_contains(df,kw["dc"])
     if kw.get("cf"):df=filter_channel_contains(df,kw["cf"])
     return df
+
 def _show():
     yt=st.session_state.yt_results;ia=st.session_state.ia_results
     if yt.empty and ia.empty:return
@@ -200,6 +215,7 @@ def _show():
         ti+=1
     with to[ti]:
         if not yt.empty:st.dataframe(yt[[c for c in["title","channel","views","weirdness_score","views_per_day","url"]if c in yt.columns]],use_container_width=True,height=400);st.download_button("CSV",yt.to_csv(index=False),"oe.csv","text/csv")
+
 # ═══ SEARCH ═══
 def render_search():
     st.markdown('<div class="H"><div class="T">SEARCH</div><div class="S">All engines active</div></div>',unsafe_allow_html=True)
@@ -225,9 +241,11 @@ def render_search():
     if bs:
         bc1,bc2=st.columns([2,1]);bc1.info(f"SEL:{len(bs)}")
         with bc2:
-            if st.button("BATCH DL"):
-                for v in list(bs):_dl(v,f"https://www.youtube.com/watch?v={v}",v,{})
-                st.session_state.batch_selected=set();st.rerun()
+            # EDITED: Commented out to prevent downloading
+            # if st.button("BATCH DL"):
+            #     for v in list(bs):_dl(v,f"https://www.youtube.com/watch?v={v}",v,{})
+            #     st.session_state.batch_selected=set();st.rerun()
+            st.caption("Batch DL Disabled")
     with st.expander("CONTROL PANEL",expanded=False):
         tp2,tf,tr,tpr,ta=st.tabs(["PAT","FILT","REG","PRE","ADV"])
         with tp2:
@@ -296,6 +314,7 @@ def render_search():
         save_search_session(aq,len(st.session_state.yt_results)+len(st.session_state.ia_results))
         if not st.session_state.yt_results.empty:update_leaderboard(st.session_state.yt_results);save_last_results(st.session_state.yt_results)
     _show()
+
 # ═══ GEO with clickable map + city presets ═══
 def render_geo():
     st.markdown('<div class="H"><div class="T">GEO-HUNT</div><div class="S">Click map or pick a city</div></div>',unsafe_allow_html=True)
@@ -357,6 +376,7 @@ def render_rabbit():
     ti=st.text_input("TAGS",key="mt")
     if ti and st.button("GEN"):st.session_state.rabbit_hole_queries=generate_rabbit_hole_queries([t.strip()for t in ti.split(",")]);st.rerun()
     _show()
+
 def _exec_q(q):
     svc=get_youtube_service()
     if svc:
@@ -422,6 +442,7 @@ def render_chaos():
         else:sdfs=[scraper_search_full(q,10)for q in qs];sdfs=[s for s in sdfs if not s.empty];df=pd.concat(sdfs,ignore_index=True).drop_duplicates(subset=["video_id"]).reset_index(drop=True) if sdfs else pd.DataFrame()
         if not df.empty:df=filter_by_views(df,cmv);df=analyze_thumbnails(df);df=df.sort_values("weirdness_score",ascending=False).reset_index(drop=True);update_leaderboard(df)
         st.session_state.yt_results=df;_show()
+
 # ═══ ROULETTE + BRUTE + CAPSULE + MEDIA ═══
 def render_roulette():
     st.markdown('<div class="H"><div class="T">ROULETTE</div></div>',unsafe_allow_html=True)
@@ -446,7 +467,8 @@ def render_roulette():
             df=scraper_parse_results(det)
             if not df.empty:r=df.iloc[0];update_leaderboard(df);st.markdown(f'<div class="tb">{_e(str(r.get("title","?")))}<br>V:{int(r.get("views",0)):,} W{r.get("weirdness_score",0):.0f}</div>',unsafe_allow_html=True)
             if st.button("★FAV"):add_favorite(df.iloc[0].to_dict())
-            if st.button("DL"):_dl(vid,f"https://www.youtube.com/watch?v={vid}","",df.iloc[0])
+            # EDITED: Commented out to prevent downloading
+            # if st.button("DL"):_dl(vid,f"https://www.youtube.com/watch?v={vid}","",df.iloc[0])
 
 def render_brute():
     st.markdown('<div class="H"><div class="T">BRUTE FORCE</div><div class="S">Random ID scanner + Wayback</div></div>',unsafe_allow_html=True)
@@ -538,6 +560,7 @@ def render_media():
                     fpc="#ff3333" if fp["score"]>=60 else "#ffb000" if fp["score"]>=30 else "#33ff33"
                     st.markdown(f'<div class="tb">{_e(ch)} — <span style="color:{fpc}">{fp["pattern"]}</span> ({fp["score"]}/100)</div>',unsafe_allow_html=True)
                     for f in fp["flags"]:st.caption(f"  └ {f}")
+
 # ═══ ANALYZE + BOARD + FAVS + STATS + EXPORT + VAULT + SETUP ═══
 def render_analyze():
     st.markdown('<div class="H"><div class="T">DEEP ANALYSIS</div></div>',unsafe_allow_html=True)
@@ -644,8 +667,11 @@ def render_vault():
     s=get_vault_stats();c1,c2,c3,c4=st.columns(4);c1.metric("N",s["total_items"]);c2.metric("YT",s["youtube_items"]);c3.metric("IA",s["archive_items"]);c4.metric("SIZE",s["total_size_human"])
     for item in reversed(get_vault_index().get("items",[])):
         with st.expander(item.get("title","?")[:50]):st.code(f"ID:{item.get('id')}\nURL:{item.get('url')}\nPATH:{item.get('filepath')}")
-    mu=st.text_input("URL")
-    if st.button("DL",disabled=not mu)and mu:_dl(mu.split("v=")[-1].split("&")[0] if"v="in mu else"m",mu,"m",{})
+    
+    # EDITED: Manual download disabled
+    # mu=st.text_input("URL")
+    # if st.button("DL",disabled=not mu)and mu:_dl(mu.split("v=")[-1].split("&")[0] if"v="in mu else"m",mu,"m",{})
+    st.info("Manual download disabled for GitHub release.")
 
 def render_setup():
     st.markdown('<div class="H"><div class="T">SETUP</div></div>',unsafe_allow_html=True)
@@ -686,4 +712,5 @@ def main():
         import traceback
         with st.expander("TRACEBACK"):
             st.code(traceback.format_exc())
+
 if __name__=="__main__":main()
