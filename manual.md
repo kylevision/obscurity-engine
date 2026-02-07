@@ -3,7 +3,7 @@ The "Final Form" Deep-Web Media Discovery Dashboard
 
 Mission: To illuminate the invisible. The Obscurity Engine is a reverse-search tool designed to find content that YouTube's algorithm actively hides: zero-view videos, raw uploads, forgotten history, and "glitch" content.
 
-⚡ Quick Start
+##  Quick Start
 Option 1: Docker (Recommended)
 The cleanest way to run the engine without dependency conflicts.
 
@@ -21,7 +21,7 @@ Option 2: Manual Install (Python 3.10+)
 Bash
 pip install -r requirements.txt
 streamlit run app.py
-🖥️ The Interface: Decoded
+##  The Interface: Decoded
 The interface uses "Cyberpunk/Terminal" shorthand to save space. Here is the translation guide for the main controls.
 
 1. Main Search Bar
@@ -57,10 +57,10 @@ DEF: Restricts results to Default Filenames only (e.g., IMG_1234, DSCN001).
 Tab: PAT (Patterns)
 Select specific camera naming conventions (e.g., Canon DSLRs IMG_, GoPro GOPR, Drones DJI_).
 
-🛠️ The Modes: A Deep Dive
+##  The Modes: A Deep Dive
 Select these modes from the sidebar menu.
 
-🗺️ GEO-HUNT (The Stalker)
+##  GEO-HUNT (The Stalker)
 Finds videos based on where they were uploaded, ignoring title relevance.
 
 What it is: A tool to find raw, unedited footage from specific coordinates.
@@ -75,7 +75,7 @@ Click SCAN LOCATION.
 
 Use Case: Digital tourism, investigating local events, or finding "slice of life" videos from remote towns.
 
-🐇 RABBIT HOLE (The Digger)
+##  RABBIT HOLE (The Digger)
 A recursive query generator.
 
 What it is: If you find one weird video, this tool helps you find the rest of the cluster.
@@ -88,7 +88,7 @@ Click GEN to create 10 new, specific search queries based on those tags.
 
 Click EXEC ALL to run all 10 searches at once.
 
-🕵️ CHANNEL AUTOPSY (The Forensic)
+##  CHANNEL AUTOPSY (The Forensic)
 Analyzes a channel for bot-like behavior.
 
 How to use: Paste a Channel ID (UC...) and click AUTOPSY.
@@ -116,14 +116,14 @@ PER_HOP: How many branches to take at each step.
 
 Use Case: Finding content that is algorithmically adjacent to your topic but not searchable via keywords.
 
-📺 ROULETTE (The Gambler)
+##  ROULETTE (The Gambler)
 NEXT: Picks a random video ID from the database or generates a "Smart Seed" ID.
 
 QUEUE 10: Generates a playlist of 10 random candidates.
 
 Note: True random YouTube IDs are rarely valid. This module uses heuristic guessing to find valid IDs.
 
-💀 BRUTE FORCE (The Lockpicker)
+##  BRUTE FORCE (The Lockpicker)
 RANDOM: Guesses 11-character strings. (Success rate: Low).
 
 NEAR: Takes a known valid ID and guesses the IDs immediately next to it (e.g., ID+1, ID-1).
@@ -132,14 +132,14 @@ Why? YouTube IDs are not sequential, but they often cluster in time. This is the
 
 WAYBACK: Checks if the videos in your current results have been saved to the Internet Archive.
 
-⏳ CAPSULE (The Historian)
+##  CAPSULE (The Historian)
 What it is: Restricts the entire engine to a single 24-hour period in history.
 
 How to use: Pick a DATE (e.g., June 15, 2009) and click OPEN CAPSULE.
 
 Result: See exactly what the world uploaded on that specific day, unfiltered by modern popularity.
 
-🔒 The Vault & Compliance
+##  The Vault & Compliance
 Note on Downloading: To comply with Terms of Service and GitHub policies, the Direct Download ("DL") buttons are disabled by default in this repository.
 
 The Code: The archival logic resides in modules/vault.py.
@@ -152,7 +152,7 @@ Uncommenting the download button logic in app.py.
 
 Use at your own risk.
 
-⚠️ Disclaimer
+##  Disclaimer
 This tool is for educational and research purposes only.
 
 Do not use this tool to infringe on copyright.
