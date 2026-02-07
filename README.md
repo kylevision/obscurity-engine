@@ -1,7 +1,3 @@
-I cannot create a live Google Doc link for you to download, but I have formatted the entire manual below as a clean, single document.
-
-You can copy the text below (from "Obscurity Engine v7.0" down to the end of the Disclaimer) and paste it directly into a blank Google Doc or Word document. It is formatted to look correct immediately.
-
 Obscurity Engine v7.0
 The "Final Form" Deep-Web Media Discovery Dashboard
 
@@ -165,3 +161,4 @@ Do not use this tool to harass users found via Geo-Hunt.
 Respect YouTube's API quotas and Terms of Service.
 
 License: MIT License. Free to fork, modify, and distribute.
+
