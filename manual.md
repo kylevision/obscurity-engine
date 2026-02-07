@@ -1,122 +1,164 @@
-📖 OBSCURITY ENGINE v7.0 — OPERATOR'S MANUAL (CORRECTED)
-2. Feature Guide
-🔍 Search (The Command Center)
-The primary interface. By default, many controls are tucked away to keep the interface clean.
+⌬ OBSCURITY ENGINE v7.0
+The "Final Form" Deep-Web Media Discovery Dashboard
 
-Main Controls:
+Mission: To illuminate the invisible. The Obscurity Engine is a reverse-search tool designed to find content that YouTube's algorithm actively hides: zero-view videos, raw uploads, forgotten history, and "glitch" content.
 
-QUERY... (Text Box): This is where you type your search terms. (The label "SYS>" is hidden).
+⚡ Quick Start
+Option 1: Docker (Recommended)
+The cleanest way to run the engine without dependency conflicts.
 
-EXEC: The "Execute" button. Runs the search.
+Bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/obscurity-engine.git
+cd obscurity-engine
 
-RAND: Generates a random "Time Travel" query.
+# 2. Start the engine
+docker compose up -d --build
 
-CHAOS: Injects 5 random queries to confuse the algorithm.
+# 3. Access the dashboard
+# Open your browser to http://localhost:8501
+Option 2: Manual Install (Python 3.10+)
+Bash
+pip install -r requirements.txt
+streamlit run app.py
+🖥️ The Interface: Decoded
+The interface uses "Cyberpunk/Terminal" shorthand to save space. Here is the translation guide for the main controls.
 
-Visible Filters:
+1. Main Search Bar
+SYS>: The Command Line. Type your search query here.
 
-API / SCRAPE / ARCH: Toggles for the different search engines.
+EXEC: "Execute". Runs the search.
 
-MAX_V: "Max Views". The most important filter. Defaults to 10. Videos with more views than this are hidden.
+RAND: "Random". Generates a "Time Travel" query (a random filename from a random week in history).
 
-ERA: A dropdown to pick a time period (e.g., "Pre-HD Era").
+CHAOS: Injects 5 completely random, system-breaking queries to clear the algorithm's cache.
 
-FROM / TO: Specific date ranges.
+2. Search Engines (Toggles)
+API: Uses the official YouTube Data API. Fast, accurate, supports deep filtering. Requires API Key.
 
-Control Panel (The Hidden Menu):
+SCRAPE: Uses yt-dlp to scrape results. slower, but unlimited. No Key Required.
 
-Click "CONTROL PANEL" to expand this area.
+ARCH: Searches the Internet Archive (Wayback Machine) simultaneously.
 
-Tab: FILT (Filters):
+3. Control Panel (Hidden Filters)
+Click "CONTROL PANEL" to expand the advanced filters.
 
-PER_Q: "Per Query". This is your Quantity slider. It defaults to 25 or 50. This is where you increase the number of results.
+Tab: FILT (Filters)
+MIN_V: Minimum Views.
 
-ZERO: Check this to force exactly 0 views.
+ZERO: Forces results to have exactly 0 Views.
 
-GHOST: Check this to find videos with 0 likes and 0 comments.
+PER_Q: "Per Query". The quantity slider. Controls how many results to fetch (Default: 50).
 
-SORT: Change from "date" to "viewCount" or "relevance".
+GHOST: Finds "True Voids" — videos with 0 Likes and 0 Comments.
 
-Tab: PAT (Patterns):
+DEF: Restricts results to Default Filenames only (e.g., IMG_1234, DSCN001).
 
-Checkboxes for filename patterns like IMG_XXXX or DSC_XXXX.
+Tab: PAT (Patterns)
+Select specific camera naming conventions (e.g., Canon DSLRs IMG_, GoPro GOPR, Drones DJI_).
 
-Tab: ADV (Advanced):
+🛠️ The Modes: A Deep Dive
+Select these modes from the sidebar menu.
 
-TIT_HAS: Filter results to only those containing a specific word in the title.
+🗺️ GEO-HUNT (The Stalker)
+Finds videos based on where they were uploaded, ignoring title relevance.
 
-MIN_AGE: Filter for videos at least X days old.
+What it is: A tool to find raw, unedited footage from specific coordinates.
 
-🗺️ Geo-Hunter
-Location Picker: "📍 PICK A LOCATION".
+How to use:
 
-Radius: Slider from 1km to 500km.
+Select PICK A LOCATION (e.g., "Chernobyl") or click the map.
 
-MAX VIEWS: Separate max view filter for geo-results.
+Set RADIUS (e.g., 10km).
 
-SCAN LOCATION: The execute button for this mode.
+Click SCAN LOCATION.
 
-🐇 Rabbit Hole
-Q1, Q2...: Input boxes for recursive queries.
+Use Case: Digital tourism, investigating local events, or finding "slice of life" videos from remote towns.
 
-TAGS: Input comma-separated tags here.
+🐇 RABBIT HOLE (The Digger)
+A recursive query generator.
 
-GEN: Generates new queries based on your tags.
+What it is: If you find one weird video, this tool helps you find the rest of the cluster.
 
-EXEC ALL: Runs all the queries in the Q boxes at once.
+How to use:
 
-🕵️ Channel Autopsy
-CHANNEL ID: Paste the ID here (e.g., UC...).
+Enter TAGS (comma-separated) or let the engine populate them from previous results.
 
-SCRAPER: Checkbox to use the scrape engine (no API key needed).
+Click GEN to create 10 new, specific search queries based on those tags.
 
-AUTOPSY: Runs the analysis.
+Click EXEC ALL to run all 10 searches at once.
 
-🕸️ Crawl
-SEED: The starting video ID or URL.
+🕵️ CHANNEL AUTOPSY (The Forensic)
+Analyzes a channel for bot-like behavior.
 
-DEPTH: How many "hops" to go from the seed.
+How to use: Paste a Channel ID (UC...) and click AUTOPSY.
 
-PER_HOP: How many related videos to grab per hop.
+Metrics:
 
-CRAWL: Starts the spider.
+Bot Fingerprint: Checks if uploads happen at mathematically perfect intervals (e.g., exactly every 4 hours).
 
-📺 Roulette
-NEXT: Finds one random video.
+Burst Detection: Finds days where the channel uploaded impossible amounts of video (e.g., 50 videos in 1 hour).
 
-QUEUE 10: Finds a batch of 10.
+Obscurity Score: Rates the channel's "weirdness" from 0-100.
 
-SKIP: Moves to the next video in the queue.
+🕸️ CRAWL (The Spider)
+Automates the "Related Video" chain.
 
-DL: Disabled in this version.
+What it is: Mimics a user clicking "Next Video" repeatedly for hours.
 
-💀 Brute Force
-Tab: RANDOM:
+Inputs:
 
-BATCH: Slider for how many IDs to guess.
+SEED: Starting Video ID.
 
-SCAN: Starts guessing.
+DEPTH: How many "hops" away from the start to go.
 
-Tab: NEAR:
+PER_HOP: How many branches to take at each step.
 
-SEED ID: A known valid video ID.
+Use Case: Finding content that is algorithmically adjacent to your topic but not searchable via keywords.
 
-COUNT: How many adjacent IDs to check.
+📺 ROULETTE (The Gambler)
+NEXT: Picks a random video ID from the database or generates a "Smart Seed" ID.
 
-SCAN NEAR: Runs the neighbor check.
+QUEUE 10: Generates a playlist of 10 random candidates.
 
-Tab: WAYBACK:
+Note: True random YouTube IDs are rarely valid. This module uses heuristic guessing to find valid IDs.
 
-CHECK: Checks if current search results are saved in the Internet Archive.
+💀 BRUTE FORCE (The Lockpicker)
+RANDOM: Guesses 11-character strings. (Success rate: Low).
 
-📦 Vault
-N / YT / IA / SIZE: Stats counters for your local archive.
+NEAR: Takes a known valid ID and guesses the IDs immediately next to it (e.g., ID+1, ID-1).
 
-Manual Download: Displays "Manual download disabled for GitHub release."
+Why? YouTube IDs are not sequential, but they often cluster in time. This is the best way to find Unlisted or Deleted videos that were uploaded at the same second as a popular video.
 
-💡 Quick Tips for V7.0
-Where is the quantity slider? It is hidden! You must click CONTROL PANEL > FILT tab > PER_Q.
+WAYBACK: Checks if the videos in your current results have been saved to the Internet Archive.
 
-How do I get more than 50 results? In the default V7.0, you can't easily do "Deep Paging" without the code modification I sent earlier. The PER_Q slider is capped at 50 to protect your API quota.
+⏳ CAPSULE (The Historian)
+What it is: Restricts the entire engine to a single 24-hour period in history.
 
-Why am I seeing 0 results? Check your MAX_V. If it is set to 10, and you search for "Minecraft", you will get 0 results because all Minecraft videos have >10 views. Try increasing MAX_V or searching for something more obscure.
+How to use: Pick a DATE (e.g., June 15, 2009) and click OPEN CAPSULE.
+
+Result: See exactly what the world uploaded on that specific day, unfiltered by modern popularity.
+
+🔒 The Vault & Compliance
+Note on Downloading: To comply with Terms of Service and GitHub policies, the Direct Download ("DL") buttons are disabled by default in this repository.
+
+The Code: The archival logic resides in modules/vault.py.
+
+For Researchers/Archivists: The functionality can be restored for legal archiving purposes by:
+
+Uncommenting yt-dlp in requirements.txt.
+
+Uncommenting the download button logic in app.py.
+
+Use at your own risk.
+
+⚠️ Disclaimer
+This tool is for educational and research purposes only.
+
+Do not use this tool to infringe on copyright.
+
+Do not use this tool to harass users found via Geo-Hunt.
+
+Respect YouTube's API quotas and Terms of Service.
+
+License: MIT License. Free to fork, modify, and distribute.
