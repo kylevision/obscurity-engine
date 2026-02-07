@@ -1,0 +1,20 @@
+# Core
+streamlit>=1.30.0
+pandas>=2.1.0
+python-dotenv>=1.0.0
+yt-dlp>=2024.1.0
+
+# YouTube API (optional — scraper mode works without these)
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+isodate>=0.6.1
+
+# Geo (optional — app works without these)
+folium>=0.15.0
+streamlit-folium>=0.15.0
+
+# Other
+internetarchive>=3.5.0
+requests>=2.31.0
+keyring>=24.3.0
