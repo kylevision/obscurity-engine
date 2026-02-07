@@ -9,7 +9,7 @@ The cleanest way to run the engine without dependency conflicts.
 
 Bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/obscurity-engine.git
+git clone https://github.com/kylevision/obscurity-engine.git
 cd obscurity-engine
 
 # 2. Start the engine
