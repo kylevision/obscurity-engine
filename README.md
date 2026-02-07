@@ -14,7 +14,7 @@ The easiest way to run the engine without installing Python or FFmpeg manually.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/obscurity-engine.git](https://github.com/YOUR_USERNAME/obscurity-engine.git)
+    git clone [https://github.com/kylevision/obscurity-engine.git](https://github.com/kylevision/obscurity-engine.git)
     cd obscurity-engine
     ```
 
@@ -81,4 +81,5 @@ Required only if you want to use "Rabbit Hole" modes that require user context.
 This tool is for educational and archival purposes only. Please respect the Terms of Service of all platforms and the copyright of content creators.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/kylevision)
+
 
