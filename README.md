@@ -75,11 +75,16 @@ Required only if you want to use "Rabbit Hole" modes that require user context.
 * **🚫 Privacy Focused:** No tracking. All data lives on your hardware.
 
 ---
+### 💾 The Vault (Archival)
+*Note: To ensure compliance with platform Terms of Service, the direct download functionality ('Preserve' button) is disabled by default in this repository.*
+
+* **Developer Note:** The `modules/vault.py` logic remains intact for educational purposes. Users with legal authorization to archive content can re-enable the UI buttons in `app.py` and install `yt-dlp` to restore full functionality.
 
 ## ⚠️ Disclaimer
 
 This tool is for educational and archival purposes only. Please respect the Terms of Service of all platforms and the copyright of content creators.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/kylevision)
+
 
 
