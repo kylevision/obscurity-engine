@@ -14,7 +14,7 @@ The easiest way to run the engine without installing Python or FFmpeg manually.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/obscurity-engine.git](https://github.com/YOUR_USERNAME/obscurity-engine.git)
+    git clone [https://github.com/kylevision/obscurity-engine.git](https://github.com/kylevision/obscurity-engine.git)
     cd obscurity-engine
     ```
 
@@ -107,5 +107,6 @@ License: MIT License. Free to fork, modify, and distribute.
 ## License
 
 For personal/research use. Respect YouTube's Terms of Service and the Internet Archive's usage policies when using this tool.
+
 
 
