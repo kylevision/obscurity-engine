@@ -135,7 +135,31 @@ obscurity-engine/
 - All processing happens locally on your machine
 
 ---
+##  The Vault & Compliance
+Note on Downloading: To comply with Terms of Service and GitHub policies, the Direct Download ("DL") buttons are disabled by default in this repository.
+
+The Code: The archival logic resides in modules/vault.py.
+
+For Researchers/Archivists: The functionality can be restored for legal archiving purposes by:
+
+Uncommenting yt-dlp in requirements.txt.
+
+Uncommenting the download button logic in app.py.
+
+Use at your own risk.
+
+##  Disclaimer
+This tool is for educational and research purposes only.
+
+Do not use this tool to infringe on copyright.
+
+Do not use this tool to harass users found via Geo-Hunt.
+
+Respect YouTube's API quotas and Terms of Service.
+
+License: MIT License. Free to fork, modify, and distribute.
 
 ## License
 
 For personal/research use. Respect YouTube's Terms of Service and the Internet Archive's usage policies when using this tool.
+
