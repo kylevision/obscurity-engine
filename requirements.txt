@@ -2,7 +2,7 @@
 streamlit>=1.30.0
 pandas>=2.1.0
 python-dotenv>=1.0.0
-#yt-dlp>=2024.1.0
+yt-dlp>=2024.1.0
 
 # YouTube API (optional — scraper mode works without these)
 google-api-python-client>=2.100.0
