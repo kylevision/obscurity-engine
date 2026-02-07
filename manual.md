@@ -60,7 +60,7 @@ Select specific camera naming conventions (e.g., Canon DSLRs IMG_, GoPro GOPR, D
 ##  The Modes: A Deep Dive
 Select these modes from the sidebar menu.
 
-##  GEO-HUNT (The Stalker)
+##  GEO-HUNT 
 Finds videos based on where they were uploaded, ignoring title relevance.
 
 What it is: A tool to find raw, unedited footage from specific coordinates.
@@ -75,7 +75,7 @@ Click SCAN LOCATION.
 
 Use Case: Digital tourism, investigating local events, or finding "slice of life" videos from remote towns.
 
-##  RABBIT HOLE (The Digger)
+##  RABBIT HOLE 
 A recursive query generator.
 
 What it is: If you find one weird video, this tool helps you find the rest of the cluster.
@@ -88,7 +88,7 @@ Click GEN to create 10 new, specific search queries based on those tags.
 
 Click EXEC ALL to run all 10 searches at once.
 
-##  CHANNEL AUTOPSY (The Forensic)
+##  CHANNEL AUTOPSY 
 Analyzes a channel for bot-like behavior.
 
 How to use: Paste a Channel ID (UC...) and click AUTOPSY.
@@ -101,7 +101,7 @@ Burst Detection: Finds days where the channel uploaded impossible amounts of vid
 
 Obscurity Score: Rates the channel's "weirdness" from 0-100.
 
-##  CRAWL (The Spider)
+##  CRAWL 
 Automates the "Related Video" chain.
 
 What it is: Mimics a user clicking "Next Video" repeatedly for hours.
@@ -116,14 +116,14 @@ PER_HOP: How many branches to take at each step.
 
 Use Case: Finding content that is algorithmically adjacent to your topic but not searchable via keywords.
 
-##  ROULETTE (The Gambler)
+##  ROULETTE 
 NEXT: Picks a random video ID from the database or generates a "Smart Seed" ID.
 
 QUEUE 10: Generates a playlist of 10 random candidates.
 
 Note: True random YouTube IDs are rarely valid. This module uses heuristic guessing to find valid IDs.
 
-##  BRUTE FORCE (The Lockpicker)
+##  BRUTE FORCE 
 RANDOM: Guesses 11-character strings. (Success rate: Low).
 
 NEAR: Takes a known valid ID and guesses the IDs immediately next to it (e.g., ID+1, ID-1).
@@ -132,7 +132,7 @@ Why? YouTube IDs are not sequential, but they often cluster in time. This is the
 
 WAYBACK: Checks if the videos in your current results have been saved to the Internet Archive.
 
-##  CAPSULE (The Historian)
+##  CAPSULE 
 What it is: Restricts the entire engine to a single 24-hour period in history.
 
 How to use: Pick a DATE (e.g., June 15, 2009) and click OPEN CAPSULE.
