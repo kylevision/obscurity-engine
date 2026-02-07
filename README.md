@@ -1,4 +1,8 @@
-⌬ OBSCURITY ENGINE v7.0
+I cannot create a live Google Doc link for you to download, but I have formatted the entire manual below as a clean, single document.
+
+You can copy the text below (from "Obscurity Engine v7.0" down to the end of the Disclaimer) and paste it directly into a blank Google Doc or Word document. It is formatted to look correct immediately.
+
+Obscurity Engine v7.0
 The "Final Form" Deep-Web Media Discovery Dashboard
 
 Mission: To illuminate the invisible. The Obscurity Engine is a reverse-search tool designed to find content that YouTube's algorithm actively hides: zero-view videos, raw uploads, forgotten history, and "glitch" content.
@@ -7,20 +11,17 @@ Mission: To illuminate the invisible. The Obscurity Engine is a reverse-search t
 Option 1: Docker (Recommended)
 The cleanest way to run the engine without dependency conflicts.
 
-Bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/obscurity-engine.git
-cd obscurity-engine
+Clone the repository git clone https://github.com/YOUR_USERNAME/obscurity-engine.git cd obscurity-engine
 
-# 2. Start the engine
-docker compose up -d --build
+Start the engine docker compose up -d --build
 
-# 3. Access the dashboard
-# Open your browser to http://localhost:8501
+Access the dashboard Open your browser to http://localhost:8501
+
 Option 2: Manual Install (Python 3.10+)
-Bash
 pip install -r requirements.txt
+
 streamlit run app.py
+
 🖥️ The Interface: Decoded
 The interface uses "Cyberpunk/Terminal" shorthand to save space. Here is the translation guide for the main controls.
 
@@ -36,7 +37,7 @@ CHAOS: Injects 5 completely random, system-breaking queries to clear the algorit
 2. Search Engines (Toggles)
 API: Uses the official YouTube Data API. Fast, accurate, supports deep filtering. Requires API Key.
 
-SCRAPE: Uses yt-dlp to scrape results. slower, but unlimited. No Key Required.
+SCRAPE: Uses yt-dlp to scrape results. Slower, but unlimited. No Key Required.
 
 ARCH: Searches the Internet Archive (Wayback Machine) simultaneously.
 
@@ -44,6 +45,7 @@ ARCH: Searches the Internet Archive (Wayback Machine) simultaneously.
 Click "CONTROL PANEL" to expand the advanced filters.
 
 Tab: FILT (Filters)
+
 MIN_V: Minimum Views.
 
 ZERO: Forces results to have exactly 0 Views.
@@ -55,6 +57,7 @@ GHOST: Finds "True Voids" — videos with 0 Likes and 0 Comments.
 DEF: Restricts results to Default Filenames only (e.g., IMG_1234, DSCN001).
 
 Tab: PAT (Patterns)
+
 Select specific camera naming conventions (e.g., Canon DSLRs IMG_, GoPro GOPR, Drones DJI_).
 
 🛠️ The Modes: A Deep Dive
