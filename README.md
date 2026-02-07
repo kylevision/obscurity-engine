@@ -98,7 +98,7 @@ This tool is for educational and research purposes only.
 
 Do not use this tool to infringe on copyright.
 
-Do not use this tool to harass users found via Geo-Hunt.
+
 
 Respect YouTube's API quotas and Terms of Service.
 
@@ -110,6 +110,7 @@ For personal/research use. Respect YouTube's Terms of Service and the Internet A
 
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/kylevision)
+
 
 
 
