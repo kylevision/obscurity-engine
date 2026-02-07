@@ -109,4 +109,8 @@ License: MIT License. Free to fork, modify, and distribute.
 For personal/research use. Respect YouTube's Terms of Service and the Internet Archive's usage policies when using this tool.
 
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/YOUR_USERNAME)
+
+
+
 
