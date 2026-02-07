@@ -1,7 +1,5 @@
 Obscurity Engine v7.0
-The "Final Form" Deep-Web Media Discovery Dashboard
 
-Mission: To illuminate the invisible. The Obscurity Engine is a reverse-search tool designed to find content that YouTube's algorithm actively hides: zero-view videos, raw uploads, forgotten history, and "glitch" content.
 
 ⚡ Quick Start
 Option 1: Docker (Recommended)
@@ -161,4 +159,5 @@ Do not use this tool to harass users found via Geo-Hunt.
 Respect YouTube's API quotas and Terms of Service.
 
 License: MIT License. Free to fork, modify, and distribute.
+
 
