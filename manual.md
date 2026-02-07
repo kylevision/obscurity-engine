@@ -101,7 +101,7 @@ Burst Detection: Finds days where the channel uploaded impossible amounts of vid
 
 Obscurity Score: Rates the channel's "weirdness" from 0-100.
 
-🕸️ CRAWL (The Spider)
+##  CRAWL (The Spider)
 Automates the "Related Video" chain.
 
 What it is: Mimics a user clicking "Next Video" repeatedly for hours.
